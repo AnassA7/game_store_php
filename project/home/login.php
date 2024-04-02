@@ -15,7 +15,7 @@
         <div class="box form-box">
             <?php 
              
-              include "config.php";
+              include_once "config.php";
               if(isset($_POST['submit'])){
                 $email = mysqli_real_escape_string($con,$_POST['email']);
                 $password = mysqli_real_escape_string($con,$_POST['password']);
@@ -26,7 +26,6 @@
                 if(is_array($row) && !empty($row)){
                     $_SESSION['valid'] = $row['email'];
                     $_SESSION['username'] = $row['name'];
-                    
                     $_SESSION['id'] = $row['id'];
                 }else{
                     echo "<div class='message'>
