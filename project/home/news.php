@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<?php
+include_once "header.php";
+?>
+<div>
+<div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3>News</h3>
+          <span class="breadcrumb"><a href="#">Home</a> > News</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-
-</head>
-<body style="background:yellow;">
-<div class="card-deck">
-  <div class="card">
+  <div class="row row-cols-1 row-cols-md-2" style="padding:5%;spasebetwen: 5px;">
+  <div class="card" style="padding:%;">
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
@@ -41,5 +45,6 @@
     </div>
   </div>
 </div>
-</body>
-</html>
+<?php
+include_once "footer.php";
+?>
