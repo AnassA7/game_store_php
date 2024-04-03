@@ -1,7 +1,10 @@
 <?php
-include 'header.php';
+include_once "config.php";
+include_once "header.php";
 ?>
-      <div class="page-heading header-text">
+
+<div>
+<div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -19,185 +22,55 @@ include 'header.php';
           <a class="is_active" href="#!" data-filter="*">Show All</a>
         </li>
         <li>
-          <a href="#!" data-filter=".adv">Adventure</a>
+          <a href="#!" data-filter=".Adventure">Adventure</a>
         </li>
         <li>
-          <a href="#!" data-filter=".str">Strategy</a>
+          <a href="#!" data-filter=".Sports">Sports</a>
         </li>
         <li>
-          <a href="#!" data-filter=".rac">Racing</a>
+          <a href="#!" data-filter=".Racing">Racing</a>
         </li>
       </ul>
-      <div class="row trending-box">
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-01.jpg" alt=""></a>
-              <span class="price">$24</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 str">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-02.jpg" alt=""></a>
-              <span class="price">$22</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv rac">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-03.jpg" alt=""></a>
-              <span class="price">$30</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 str">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-04.jpg" alt=""></a>
-              <span class="price">$22</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 rac str">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-03.jpg" alt=""></a>
-              <span class="price">$26</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 rac adv">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-01.jpg" alt=""></a>
-              <span class="price">$20</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 rac str">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-04.jpg" alt=""></a>
-              <span class="price">$22</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 rac adv">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-02.jpg" alt=""></a>
-              <span class="price">$22</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv rac">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-03.jpg" alt=""></a>
-              <span class="price">$20</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 str">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-04.jpg" alt=""></a>
-              <span class="price">$18</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-01.jpg" alt=""></a>
-              <span class="price">$24</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 str">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="assets/images/trending-02.jpg" alt=""></a>
-              <span class="price">$30</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <ul class="pagination">
-          <li><a href="#"> &lt; </a></li>
-            <li><a href="#">1</a></li>
-            <li><a class="is_active" href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#"> &gt; </a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="section trending">
+                <div class="container">
+                  <div class="row trending-box">
 <?php
-include 'footer.php';
+
+$sql = "SELECT * FROM game";
+$result = mysqli_query($con, $sql);
+while($row = mysqli_fetch_assoc($result)) {
+  ?>
+     
+            <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 <?php echo $row['category'] ; ?>">
+              <div class="item">
+                <div class="thumb">
+                  <a href="product-details.html"><img src="assets/images/trending-01.jpg" alt=""></a>
+                  <span class="price"><?php echo $row['price'];?>$</span>
+                </div>
+                <div class="down-content">
+                  <span class="category"><?php echo $row['category'] ; ?></span>
+                  <h4><?php echo $row['name'] ; ?></h4>
+                  <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+                </div>
+              </div>
+            </div>
+            <?php
+          }
+// $row = mysqli_fetch_assoc($result);
+// var_dump($row);
+// echo $row['id'];
+// echo $row['name'];
+// echo $row['price'];
+// echo $row['category'];
+// echo $row['publish_date'];
+// echo $row['description'];
+// echo $row['studio_id'];
+?>
+                </div>
+            </div>
+          </div>
+
+</div>
+<?php
+include_once "footer.php";
+
