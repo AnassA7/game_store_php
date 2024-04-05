@@ -1,5 +1,6 @@
 <?php
 include_once "header.php";
+include_once "config.php";
 ?>
 <div>
 <div class="page-heading header-text">
@@ -13,38 +14,26 @@ include_once "header.php";
     </div>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-2" style="padding:5%;spasebetwen: 5px;">
+  <div class="row row-cols-1 row-cols-md-2" style="padding:5%;spasebetwen: 1px;">
+    <?php
+
+$sql = "SELECT * FROM news";
+$result = mysqli_query($con, $sql);
+while($row = mysqli_fetch_assoc($result)) {
+   
+  ?>
   <div class="card" style="padding:%;">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="<?php echo "img"; ?>" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <h5 class="card-title"><?php echo $row['post_name']; ?></h5>
+      <p class="card-text"><?php echo $row['post_text']; ?></p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted">Last updated in <?php echo $row['post_date']; ?> </small>
     </div>
   </div>
 </div>
 <?php
+}
 include_once "footer.php";
 ?>
