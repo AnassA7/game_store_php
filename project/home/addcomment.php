@@ -23,8 +23,6 @@ if(!isset($_SESSION['valid'])){
         $date = date('Y-m-d H:i:s');
         $sql = "INSERT INTO comment (classe, publish_date, content, user_id, target_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($con, $sql);
-        echo "++++++++++++++", $id;
-        echo "++++++++++++++", $user;
         mysqli_stmt_bind_param($stmt, "sssss", $classe, $date, $comment, $user, $id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
@@ -32,4 +30,5 @@ if(!isset($_SESSION['valid'])){
         mysqli_stmt_close($stmt);
     }
 }
+$con->close();
 ?>
