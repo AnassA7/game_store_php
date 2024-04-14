@@ -20,14 +20,13 @@
                 $email = mysqli_real_escape_string($con,$_POST['email']);
                 $password = mysqli_real_escape_string($con,$_POST['password']);
 
-                $result = mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$password' ") ;
+                $result = mysqli_query($con,"SELECT * FROM studio WHERE email='$email' AND password='$password' ") ;
                 $row = mysqli_fetch_assoc($result);
 
                 if(is_array($row) && !empty($row)){
                     $_SESSION['valid'] = $row['id'];
                     $_SESSION['username'] = $row['name'];
                     $_SESSION['email'] = $row['email'];
-                    $_SESSION['type'] = $row['type_user'];
                 }else{
                     echo "<div class='message'>
                       <p>Wrong Username or Password</p>
@@ -36,7 +35,7 @@
          
                 }
                 if(isset($_SESSION['valid'])){
-                    header("Location: admin.php");
+                    header("Location: studio.php");
                 }
               }else{
 

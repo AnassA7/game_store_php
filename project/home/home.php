@@ -1,11 +1,11 @@
 <?php 
     
-   session_start();
+session_start();
 
-   include "config.php";
-   if(!isset($_SESSION['valid'])){
-    header("Location: index.php");
-   }
+include_once "config.php";
+if(!isset($_SESSION['valid'])){
+header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@
 
             <?php 
             
-            $id = $_SESSION['id'];
+            $id = $_SESSION['valid'];
             $query = mysqli_query($con,"SELECT*FROM user WHERE id=$id");
 
             while($result = mysqli_fetch_assoc($query)){

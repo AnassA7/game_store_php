@@ -2,8 +2,17 @@
 
 $server = "localhost";
 $username = "root";
-$password = "";
+$password = ""; 
 $db = "game_store";
 
-$con = new mysqli($server, $username, $password, $db);
-// echo var_dump($conn);
+
+$con = new mysqli($server, $username, $password, $db, 3307);
+
+
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+} else {
+    echo "Connected successfully";
+}
+
+?>
