@@ -89,7 +89,7 @@ if ($result->num_rows > 0) {
         </div>
        <!-- end insights -->
       <div class="recent_order">
-         <h2>Recent Orders</h2>
+         <h2>USERS</h2>
          <table> 
              <thead>
               <tr>
