@@ -35,7 +35,6 @@
             $pass = $_POST['password'];
             $cpass = $_POST['cpass'];
             $date = $_POST['date'];
-            $walet_id = 45;
 
 
             $check = "select * from user where email='{$email}'";
@@ -61,7 +60,7 @@
 
               if ($pass === $cpass) {
 
-                $sql = "insert into user (name,email,password,birth_day , walet_id) values('$name','$email','$pass','$date' , $walet_id)";
+                $sql = "insert into user (name,email,password,birth_day) values('$name','$email','$pass','$date')";
 
                 $result = mysqli_query($con , $sql);
 

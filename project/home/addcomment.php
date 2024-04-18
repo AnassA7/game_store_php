@@ -10,7 +10,7 @@ if(!isset($_SESSION['valid'])){
 <form action="" method="post">
     <div class="field input">
         <label for="comment">Comment</label>
-        <input type="text" name="comment" id="comment" autocomplete="off" required>
+        <input type="text" name="comment" id="comment" autocomplete="off" required class="input">
         <input type="submit" class="btn" name="submit" value="Send">
     </div>    
 </form>
