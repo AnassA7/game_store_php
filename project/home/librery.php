@@ -31,19 +31,17 @@ include_once "uh.php";
 ?>
 
 <main>
-           <h1>Dashbord</h1>
 
+           <div class="insights">
 
-        <div class="insights">
-
-
-        </div>
-       <!-- end insights -->
-      <div class="recent_order">
-         <h2>GAMES</h2>
-         <?php
+             
+             </div>
+             <!-- end insights -->
+             <div class="recent_order">
+               <h2>GAMES</h2>
+               <?php
          $id_valid = $_SESSION['valid'];
-
+         
          $sql = "SELECT g.name, g.image, g.price, g.category FROM game g JOIN library l ON g.id = l.game_idgame WHERE l.user_id = ?";
          $stmt = $con->prepare($sql);
          $stmt->bind_param("i", $id_valid); // Changed "si" to "i" for integer
@@ -51,32 +49,34 @@ include_once "uh.php";
          $result = $stmt->get_result();
          
          if ($result->num_rows > 0) {
-             while ($row = $result->fetch_assoc()) {
-                 $game_name = $row['name'];
-                 $game_image = $row['image'];
-                 $game_price = $row['price'];
-                 $game_category = $row['category'];
-         ?>
+           while ($row = $result->fetch_assoc()) {
+             $game_name = $row['name'];
+             $game_image = $row['image'];
+             $game_price = $row['price'];
+             $game_category = $row['category'];
+             ?>
          <link rel="stylesheet" href="assets/css/lib.css">
          <ul class="cards">
-  <li>
-    <a href="" class="card">
-      <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
-      <div class="card__overlay">
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-          
-          <div class="card__header-text">
+           
+             <div href="" class="card">
+             <?php include_once "dot.php"; ?>
+               <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+               <div class="card__overlay">
+                 <div class="card__header">
+                   <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+                   
+                   <div class="card__header-text">
             <h3 class="card__title"><?php echo $game_name ?></h3>            
             <span class="card__status"><?php echo $game_category  ?></span>
           </div>
         </div>
       </div>
-    </a>      
-  </li>
+    </div>      
+  
 <li></li>
 <li></li>
 <li></li>
+
 <li></li>
 
 

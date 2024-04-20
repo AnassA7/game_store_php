@@ -48,7 +48,7 @@ session_start();
                             <li><a href="index.php" class="active">Home</a></li>
                             <li><a href="shop.php">Our Shop</a></li>
                             <li><a href="news.php">News</a></li>
-                            <li><a href="contact.html">About</a></li>
+                            <li><a href="about.php">About</a></li>
                             <li>
                                 <?php
                           if(!isset($_SESSION['valid'])){
