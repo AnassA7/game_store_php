@@ -11,6 +11,11 @@
     <title>Login</title>
 </head>
 <body>
+    <style>
+        body{
+            background-image:src="image/game-developers.jpg";
+        }
+    </style>
       <div class="container">
         <div class="box form-box">
             <?php 
@@ -24,7 +29,7 @@
                 $row = mysqli_fetch_assoc($result);
 
                 if(is_array($row) && !empty($row)){
-                    $_SESSION['valid'] = $row['id'];
+                    $_SESSION['studio'] = $row['id'];
                     $_SESSION['username'] = $row['name'];
                     $_SESSION['email'] = $row['email'];
                 }else{
@@ -34,7 +39,7 @@
                    echo "<a href='login.php'><button class='btn'>Go Back</button>";
          
                 }
-                if(isset($_SESSION['valid'])){
+                if(isset($_SESSION['studio'])){
                     header("Location: studio.php");
                 }
               }else{
@@ -58,7 +63,8 @@
                     <input type="submit" class="btn" name="submit" value="Login" required>
                 </div>
                 <div class="links">
-                    Don't have account? <a href="register.php">Sign Up Now</a>
+                    Don't have account? <a href="register.php">Sign Up Now</a> <br>
+                    login as user <a href="login.php">user</a>
                 </div>
             </form>
         </div>

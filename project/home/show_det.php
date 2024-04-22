@@ -56,7 +56,7 @@ if(isset($_GET['id'])){
         $game_price = $game['price'];
         $studio_id = $game['studio_id'];
         $game_namme = $game['name'];
-        echo "$game_namme";
+        
     }
 }
 $stud_query = "SELECT * FROM studio WHERE id=?";
@@ -79,7 +79,7 @@ if($studio_result->num_rows > 0){
     if($admin_balance_result->num_rows > 0){
         $admin_balance = $admin_balance_result->fetch_assoc();
         $admin_money = $admin_balance['money'];
-        echo "$admin_money";
+        
     }
 
 // Process buying the game
@@ -101,9 +101,9 @@ if(isset($_POST['add_to_cart'])){
             $stmt->execute();
             $stmt->close();
             // Add the operation
-            $add_to_operation_query = "INSERT INTO operation (user_name, id_user, game_name, money, time) VALUES (?, ?, ?, ?, ?)";
+            $add_to_operation_query = "INSERT INTO operation (user_name, id_user, game_name, studio_id, money, time) VALUES (?, ?, ?, ?, ?, ?)";
             $op_stmt = $con->prepare($add_to_operation_query);
-            $op_stmt->bind_param("sisss", $user_full_name, $user_id, $game_namme, $game_price, $buy_date);
+            $op_stmt->bind_param("sisiss", $user_full_name, $user_id, $game_namme, $studio_id, $game_price, $buy_date);
             $op_stmt->execute();
             $op_stmt->close();
 
@@ -136,6 +136,7 @@ if(isset($_GET['id'])){
         $res_Uname = $row['name'];
         $res_price = $row['price'];
         $res_pubdate = $row['publish_date'];
+        $res_image = $row['image'];
         $res_category = $row['category'];
         $res_description = $row['description'];
     }
@@ -159,7 +160,7 @@ if(isset($_GET['id'])){
         <div class="row">
             <div class="col-lg-6">
                 <div class="left-image">
-                    <img src="assets/images/single-game.jpg" alt="">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($res_image); ?>" alt="">
                 </div>
             </div>
             <div class="col-lg-6 align-self-center">
@@ -234,7 +235,7 @@ if(isset($_GET['id'])){
 </div>
 
 <?php
-include "comment.php";
 include_once "addcomment.php";
+include "comment.php";
 include_once "footer.php";
 ?>

@@ -51,11 +51,13 @@ session_start();
                             <li><a href="about.php">About</a></li>
                             <li>
                                 <?php
-                          if(!isset($_SESSION['valid'])){
-                            echo '<a href="login.php">login</a>';
-                          }else {
-                            echo '<a href="home.php">acount</a>';
-                          }
+                              if (!isset($_SESSION['valid'])) {
+                                echo '<a href="login.php">login</a>';
+                            } elseif (isset($_SESSION['studio'])) {
+                                echo '<a href="studio.php">studio</a>';
+                            } else {
+                                echo '<a href="home.php">account</a>';
+                            }
                           ?>
                             </li>
                         </ul>

@@ -101,6 +101,7 @@ include 'header.php';
       </div>
     </div>
   </div>
+  <?php include_once "x.php" ?>
   <script>
         let items = document.querySelectorAll('.slider .list .item');
     let next = document.getElementById('next');

@@ -51,7 +51,7 @@ while($row = $result->fetch_assoc()) {
                             <div class="item">
                                 <div class="thumb">
                                     <a href="show_det.php?id=<?php echo $row['id']; ?>"><img
-                                            src="assets/images/trending-01.jpg" alt=""></a>
+                                            src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" alt=""></a>
                                     <span class="price"><?php echo $row['price'];?>$</span>
                                 </div>
                                 <div class="down-content">

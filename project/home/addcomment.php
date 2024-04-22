@@ -2,17 +2,28 @@
 
 
 include_once "config.php";
-if(!isset($_SESSION['valid'])){
+if(!isset($_SESSION['valid'])){?>
+    <link rel="stylesheet" href="assets/css/comment.css">
+<div class="comment_block"><?php
     echo "You are not logged in." ;
 } else {
 ?>
 
 <form action="" method="post">
-    <div class="field input">
-        <label for="comment">Comment</label>
-        <input type="text" name="comment" id="comment" autocomplete="off" required class="input">
+<link rel="stylesheet" href="assets/css/comment.css">
+<div class="comment_block">
+
+<div class="create_new_comment">
+
+   <!-- current #{user} avatar -->
+    <div class="user_avatar">
+        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
+    </div><!-- the input field --><div class="input_comment">
+        <input type="text" name="comment" id="comment" autocomplete="off" required >
         <input type="submit" class="btn" name="submit" value="Send">
-    </div>    
+    </div>
+
+</div>    
 </form>
 
 <?php 
@@ -27,8 +38,9 @@ if(!isset($_SESSION['valid'])){
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         // Handle result if necessary
-        mysqli_stmt_close($stmt);
+        $stmt->close();
+        // header("Location: show_det.php");
     }
 }
-$con->close();
+
 ?>
