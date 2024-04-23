@@ -39,6 +39,9 @@ include_once "uh.php";
              <!-- end insights -->
              <div class="recent_order">
                <h2>GAMES</h2>
+               <link rel="stylesheet" href="assets/css/lib.css">
+      <ul class="cards">
+               
                <?php
          $id_valid = $_SESSION['valid'];
          
@@ -55,38 +58,29 @@ include_once "uh.php";
              $game_price = $row['price'];
              $game_category = $row['category'];
              ?>
-         <link rel="stylesheet" href="assets/css/lib.css">
-         <ul class="cards">
-           
-             <div href="" class="card">
-             <?php include_once "dot.php"; ?>
-               <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
-               <div class="card__overlay">
-                 <div class="card__header">
-                   <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-                   
-                   <div class="card__header-text">
-            <h3 class="card__title"><?php echo $game_name ?></h3>            
-            <span class="card__status"><?php echo $game_category  ?></span>
+             <div class="card">
+             <?php include "dot.php"; ?>
+              
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card__image" alt="" />
+            <div class="card__overlay">
+              <div class="card__header">
+                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                  <path />
+                </svg>
+                <div class="card__header-text">
+                  <h3 class="card__title"><?php echo $row['name']; ?></h3>
+                  <span class="card__status"><?php echo $row['category']; ?></span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>      
-  
-<li></li>
-<li></li>
-<li></li>
-
-<li></li>
-
-
-</ul>
 <?php
             }
           } else {
               echo "No games found in the library.";
           }
 ?>
+</ul>
          <a href="#">Show All</a>
       </div>
 

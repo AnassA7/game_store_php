@@ -1,256 +1,119 @@
 <?php
 session_start();
-include_once "uh.php";
-<div class="container light-style flex-grow-1 container-p-y">
+include_once "config.php";
 
-    <h4 class="font-weight-bold py-3 mb-4">
-      Account settings
-    </h4>
+if(!isset($_SESSION['valid'])){
+  header("Location: index.php");
+  exit; // Added exit to stop further execution
+}
 
-    <div class="card overflow-hidden">
-      <div class="row no-gutters row-bordered row-border-light">
-        <div class="col-md-3 pt-0">
-          <div class="list-group list-group-flush account-settings-links">
-            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Info</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Social links</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections">Connections</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>
-          </div>
-        </div>
-        <div class="col-md-9">
-          <div class="tab-content">
-            <div class="tab-pane fade active show" id="account-general">
+$id = $_SESSION['valid'];
+$query = mysqli_query($con, "SELECT * FROM user WHERE id = $id");
 
-              <div class="card-body media align-items-center">
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
-                <div class="media-body ml-4">
-                  <label class="btn btn-outline-primary">
-                    Upload new photo
-                    <input type="file" class="account-settings-fileinput">
-                  </label> &nbsp;
-                  <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+while($result = mysqli_fetch_assoc($query)){
+    $res_Uname = $result['name'];
+    $res_Email = $result['email'];
+    $res_Age = $result['birth_day'];
+    $res_id = $result['id'];
+    $res_image = $result['image'];
+    $res_money = $result['money'];
+}
 
-                  <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
-                </div>
-              </div>
-              <hr class="border-light m-0">
+$message = []; // Initialize an empty array for messages
 
-              <div class="card-body">
-                <div class="form-group">
-                  <label class="form-label">Username</label>
-                  <input type="text" class="form-control mb-1" value="nmaxwell">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Name</label>
-                  <input type="text" class="form-control" value="Nelle Maxwell">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">E-mail</label>
-                  <input type="text" class="form-control mb-1" value="nmaxwell@mail.com">
-                  <div class="alert alert-warning mt-3">
-                    Your email is not confirmed. Please check your inbox.<br>
-                    <a href="javascript:void(0)">Resend confirmation</a>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Company</label>
-                  <input type="text" class="form-control" value="Company Ltd.">
-                </div>
-              </div>
+if(isset($_POST['update_profile'])){
+   $update_name = mysqli_real_escape_string($con, $_POST['update_name']);
+   $update_email = mysqli_real_escape_string($con, $_POST['update_email']);
 
-            </div>
-            <div class="tab-pane fade" id="account-change-password">
-              <div class="card-body pb-2">
+   // Update name and email
+   mysqli_query($con, "UPDATE `user` SET name = '$update_name', email = '$update_email' WHERE id = '$id'");
 
-                <div class="form-group">
-                  <label class="form-label">Current password</label>
-                  <input type="password" class="form-control">
-                </div>
+   // Password updating
+   $old_pass = mysqli_real_escape_string($con, $_POST['old_pass']);
+   $update_pass = mysqli_real_escape_string($con, $_POST['update_pass']);
+   $new_pass = mysqli_real_escape_string($con, $_POST['new_pass']);
+   $confirm_pass = mysqli_real_escape_string($con, $_POST['confirm_pass']);
 
-                <div class="form-group">
-                  <label class="form-label">New password</label>
-                  <input type="password" class="form-control">
-                </div>
+   if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
+      if(md5($update_pass) == $old_pass){
+         $message[] = 'Old password not matched!';
+      }elseif($new_pass != $confirm_pass){
+         $message[] = 'Confirm password not matched!';
+      }else{
+         $hashed_pass = md5($confirm_pass); // Hash the password
+         mysqli_query($con, "UPDATE `user` SET password = '$confirm_pass' WHERE id = '$id'");
+         $message[] = 'Password updated successfully!';
+      }
+   }
 
-                <div class="form-group">
-                  <label class="form-label">Repeat new password</label>
-                  <input type="password" class="form-control">
-                </div>
+   // Update image
+   $update_image = $_FILES['update_image']['name'];
+   $update_image_size = $_FILES['update_image']['size'];
+   $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
 
-              </div>
-            </div>
-            <div class="tab-pane fade" id="account-info">
-              <div class="card-body pb-2">
+   if(!empty($update_image)){
+      if($update_image_size > 2000000){
+         $message[] = 'Image is too large';
+      }else{
+         $image_update_query = mysqli_query($con, "UPDATE `user` SET image = '$update_image' WHERE id = '$id'");
+         if($image_update_query){
+            move_uploaded_file($update_image_tmp_name,$update_image);
+         }
+         $message[] = 'Image updated successfully!';
+      }
+   }
+}
 
-                <div class="form-group">
-                  <label class="form-label">Bio</label>
-                  <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Birthday</label>
-                  <input type="text" class="form-control" value="May 3, 1995">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Country</label>
-                  <select class="custom-select">
-                    <option>USA</option>
-                    <option selected="">Canada</option>
-                    <option>UK</option>
-                    <option>Germany</option>
-                    <option>France</option>
-                  </select>
-                </div>
+?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Update Profile</title>
 
-              </div>
-              <hr class="border-light m-0">
-              <div class="card-body pb-2">
+   <!-- Custom CSS file link  -->
+   <link rel="stylesheet" href="assets/css/edit.css">
+</head>
+<body>
+   
+<div class="update-profile">
 
-                <h6 class="mb-4">Contacts</h6>
-                <div class="form-group">
-                  <label class="form-label">Phone</label>
-                  <input type="text" class="form-control" value="+0 (123) 456 7891">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Website</label>
-                  <input type="text" class="form-control" value="">
-                </div>
-
-              </div>
-      
-            </div>
-            <div class="tab-pane fade" id="account-social-links">
-              <div class="card-body pb-2">
-
-                <div class="form-group">
-                  <label class="form-label">Twitter</label>
-                  <input type="text" class="form-control" value="https://twitter.com/user">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Facebook</label>
-                  <input type="text" class="form-control" value="https://www.facebook.com/user">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Google+</label>
-                  <input type="text" class="form-control" value="">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">LinkedIn</label>
-                  <input type="text" class="form-control" value="">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Instagram</label>
-                  <input type="text" class="form-control" value="https://www.instagram.com/user">
-                </div>
-
-              </div>
-            </div>
-            <div class="tab-pane fade" id="account-connections">
-              <div class="card-body">
-                <button type="button" class="btn btn-twitter">Connect to <strong>Twitter</strong></button>
-              </div>
-              <hr class="border-light m-0">
-              <div class="card-body">
-                <h5 class="mb-2">
-                  <a href="javascript:void(0)" class="float-right text-muted text-tiny"><i class="ion ion-md-close"></i> Remove</a>
-                  <i class="ion ion-logo-google text-google"></i>
-                  You are connected to Google:
-                </h5>
-                nmaxwell@mail.com
-              </div>
-              <hr class="border-light m-0">
-              <div class="card-body">
-                <button type="button" class="btn btn-facebook">Connect to <strong>Facebook</strong></button>
-              </div>
-              <hr class="border-light m-0">
-              <div class="card-body">
-                <button type="button" class="btn btn-instagram">Connect to <strong>Instagram</strong></button>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="account-notifications">
-              <div class="card-body pb-2">
-
-                <h6 class="mb-4">Activity</h6>
-
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input" checked="">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">Email me when someone comments on my article</span>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input" checked="">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">Email me when someone answers on my forum thread</span>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">Email me when someone follows me</span>
-                  </label>
-                </div>
-              </div>
-              <hr class="border-light m-0">
-              <div class="card-body pb-2">
-
-                <h6 class="mb-4">Application</h6>
-
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input" checked="">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">News and announcements</span>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">Weekly product updates</span>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label class="switcher">
-                    <input type="checkbox" class="switcher-input" checked="">
-                    <span class="switcher-indicator">
-                      <span class="switcher-yes"></span>
-                      <span class="switcher-no"></span>
-                    </span>
-                    <span class="switcher-label">Weekly blog digest</span>
-                  </label>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
+   <form action="" method="post" enctype="multipart/form-data">
+      <?php
+         echo '<img src="data:image/jpeg;base64,<?php echo base64_encode($res_image); ?>">';
+         if(!empty($message)){
+            foreach($message as $msg){
+               echo '<div class="message">'.$msg.'</div>';
+            }
+         }
+      ?>
+      <div class="flex">
+         <div class="inputBox">
+            <span>Username:</span>
+            <input type="text" name="update_name" value="<?php echo $res_Uname; ?>" class="box">
+            <span>Your Email:</span>
+            <input type="email" name="update_email" value="<?php echo $res_Email; ?>" class="box">
+            <span>Update Your Picture:</span>
+            <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
+         </div>
+         <div class="inputBox">
+            <input type="hidden" name="old_pass" value="<?php echo $res_pass; ?>">
+            <span>Old Password:</span>
+            <input type="password" name="update_pass" placeholder="Enter Previous Password" class="box">
+            <span>New Password:</span>
+            <input type="password" name="new_pass" placeholder="Enter New Password" class="box">
+            <span>Confirm Password:</span>
+            <input type="password" name="confirm_pass" placeholder="Confirm New Password" class="box">
+         </div>
       </div>
-    </div>
+      <input type="submit" value="Update Profile" name="update_profile" class="btn">
+      <a href="home.php" class="delete-btn">Go Back</a>
+   </form>
 
-    <div class="text-right mt-3">
-      <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-      <button type="button" class="btn btn-default">Cancel</button>
-    </div>
+</div>
 
-  </div>
+</body>
+</html>

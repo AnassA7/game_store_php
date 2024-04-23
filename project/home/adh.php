@@ -32,26 +32,10 @@
               <span class="material-symbols-sharp">person</span>
               <h4>user</h4>
            </a>
-           <a href="#">
-              <span class="material-symbols-sharp">mail_outline </span>
-              <h4>Messages</h4>
-              <span class="msg_count">14</span>
-           </a>
-           <a href="#">
-              <span class="material-symbols-sharp">receipt_long </span>
-              <h4>Products</h4>
-           </a>
-           <a href="#">
-              <span class="material-symbols-sharp">report_gmailerrorred </span>
-              <h4>Reports</h4>
-           </a>
-           <a href="#">
-              <span class="material-symbols-sharp">settings </span>
-              <h4>settings</h4>
-           </a>
-           <a href="#">
-              <span class="material-symbols-sharp">add </span>
-              <h4>Add Product</h4>
+           <a href="studoi_list.php">
+              <span class="material-symbols-sharp">videogame_asset </span>
+              <h4>studio</h4>
+              <!-- <span class="msg_count">14</span> -->
            </a>
            <a href="logout.php">
               <span class="material-symbols-sharp">logout </span>
