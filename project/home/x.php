@@ -9,7 +9,7 @@
         </div>
         <div class="col-lg-6">
           <div class="main-button">
-            <a href="shop.html">View All</a>
+            <a href="shop.php">View All</a>
           </div>
         </div>
 
@@ -58,7 +58,7 @@ while($row = $result->fetch_assoc()) {
         </div>
         <div class="col-lg-6">
           <div class="main-button">
-            <a href="shop.html">View All</a>
+            <a href="shop.php">View All</a>
           </div>
         </div>
 
@@ -110,7 +110,7 @@ while($row = $result->fetch_assoc()) {
                 </div>
                 <p>Lorem ipsum dolor consectetur adipiscing, sed do eiusmod tempor incididunt.</p>
                 <div class="main-button">
-                  <a href="shop.html">Shop Now</a>
+                  <a href="shop.php">Shop Now</a>
                 </div>
               </div>
             </div>

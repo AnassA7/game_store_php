@@ -16,7 +16,7 @@
         $EnrollNumber = $_POST['EnrollNumber'];
         $DateOfAdmission = $_POST['DateOfAdmission'];
 
-        $requete = $con->prepare("INSERT INTO studio(name,description,email,date,image) VALUES('$Name','$Phone','$Email', '$DateOfAdmission','$image')");
+        $requete = $con->prepare("INSERT INTO studio(name,description,email,password,date,image) VALUES('$Name','$Phone','$Email', '$EnrollNumber', '$DateOfAdmission','$image')");
         //$requete->execute(array($image,$Name,$Email,$Phone,$EnrollNumber,$DateOfAdmission));
         $requete->execute();
     }

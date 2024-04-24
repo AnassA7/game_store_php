@@ -1,10 +1,5 @@
 <?php 
-$id = $_SESSION['valid'];
-$query = mysqli_query($con,"SELECT*FROM user WHERE id=$id");
-while($result = mysqli_fetch_assoc($query)){
-	
-	$res_user_image = $result['image'];
-}
+
 
 include_once "config.php";
 if(!isset($_SESSION['valid'])){?>
@@ -12,6 +7,12 @@ if(!isset($_SESSION['valid'])){?>
 <div class="comment_block"><?php
     echo "You are not logged in." ;
 } else {
+    $id = $_SESSION['valid'];
+$query = mysqli_query($con,"SELECT*FROM user WHERE id=$id");
+while($result = mysqli_fetch_assoc($query)){
+	
+	$res_user_image = $result['image'];
+}
 ?>
 
 <form action="" method="post">

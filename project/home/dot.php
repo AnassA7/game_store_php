@@ -5,7 +5,6 @@
           <div class="dropdown">
             <a href="#"><div>Reste</div></a>
             <a href="#"><div>information</div></a>
-            <a href="#"><div>walo</div></a>
           </div>
         </div>
       </div>

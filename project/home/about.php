@@ -33,11 +33,11 @@ include_once "header.php"
               <h6>Contact Us</h6>
               <h2>Say Hello!</h2>
             </div>
-            <p>LUGX Gaming Template is based on the latest Bootstrap 5 CSS framework. This template is provided by TemplateMo and it is suitable for your gaming shop ecommerce websites. Feel free to use this for any purpose. Thank you.</p>
+            <p>welcome</p>
             <ul>
               <li><span>Address</span> Sunny Isles Beach, FL 33160, United States</li>
-              <li><span>Phone</span> +123 456 7890</li>
-              <li><span>Email</span> lugx@contact.com</li>
+              <li><span>Phone</span> +212 600 00 00</li>
+              <li><span>Email</span> Gamenight@contact.com</li>
             </ul>
           </div>
         </div>

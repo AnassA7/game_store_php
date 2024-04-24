@@ -22,20 +22,20 @@
                                     <input type="text" class="form-control" id="recipient-name" name="Email">
                                   </div>
                                   <div class="">
-                                    <label for="recipient-name" class="col-form-label">Phone:</label>
+                                    <label for="recipient-name" class="col-form-label">discription:</label>
                                     <input type="text" class="form-control" id="recipient-name" name="Phone">
                                   </div>
                                   <div class="">
-                                    <label for="recipient-name" class="col-form-label">Enroll Number:</label>
+                                    <label for="recipient-name" class="col-form-label">password:</label>
                                     <input type="text" class="form-control" id="recipient-name" name="EnrollNumber">
                                   </div>
                                   <div class="">
-                                    <label for="recipient-name" class="col-form-label">Date of admission:</label>
+                                    <label for="recipient-name" class="col-form-label">Date:</label>
                                     <input type="date" class="form-control" id="recipient-name" name="DateOfAdmission">
                                   </div>
                                   <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="submit" class="btn btn-primary">add student</button>
+                                <button type="submit" name="submit" class="btn btn-primary">add studio</button>
                               </div>
                                 </form>
                               </div>

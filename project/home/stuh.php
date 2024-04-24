@@ -62,7 +62,7 @@ while($result = mysqli_fetch_assoc($query)){
               <span class="material-symbols-sharp">Wallet</span>
               <h4>Wallet</h4>
            </a>
-           <a href="games.php">
+           <a href="game_list.php">
               <span class="material-symbols-sharp">stadia_controller </span>
               <h4>games</h4>
               <span class="msg_count">14</span>

@@ -43,7 +43,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>descrption</th>
-                            <th>price</th>
+                            <th>money</th>
                             <th>Date </th>
                             <th class="opacity-0">list</th>
                         </tr>

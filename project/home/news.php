@@ -27,7 +27,7 @@ include_once "config.php";
         <img src="data:image/jpeg;base64,<?php echo base64_encode($row['post_img']); ?>" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title"><?php echo $row['post_name']; ?></h5>
-          <p class="card-text"><?php echo $row['post_text']; ?></p>
+          <p class="card-text"><?php echo $row['post_re']; ?></p>
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated in <?php echo $row['post_date']; ?></small>

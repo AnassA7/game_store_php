@@ -14,28 +14,25 @@ if(isset($_GET['id'])){
         $res_id = $row['id'];   
         $res_Uname = $row['post_name'];
         $res_image = $row['post_img'];
-        $res_price = $row['post_text'];
+        $res_text = $row['post_text'];
         $res_pubdate = $row['post_date'];
         $res_category = $row['admin_id'];
 
     }
 }
 ?>
-<div class="page-heading header-text" style="padding: 100px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3><?php echo $res_Uname ?></h3>
-                <span class="breadcrumb"><a href="index.php">Accueil</a> > <a href="shop.php">nouvelles</a> >
-                    <?php echo $res_Uname ?></span>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 
     <div class="thumb">
             <img src="data:image/jpeg;base64,<?php echo base64_encode($res_image); ?>" alt=""> 
     </div>
+    
+    <section style="background-color: rgba(27, 21, 21, 0.301); padding: 4%;">
+        
+        <h1 style="color:#eee5; padding-left: 44%;"><?php echo $res_Uname ?></h1>
+        <h2 style="color:#eee; padding: 10%;"><?php echo $res_text ?></h2>
+    </section>
 
 
 <?php

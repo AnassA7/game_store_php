@@ -51,11 +51,11 @@ if(isset($_GET['Id']) && is_numeric($_GET['Id'])) {
             <input type="text" class="form-control" id="recipient-name" name="Email" value="<?php echo $table['email']?>">
         </div>
         <div class="">
-            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <label for="recipient-name" class="col-form-label">discrption:</label>
             <input type="text" class="form-control" id="recipient-name" name="Phone" value="<?php echo $table['description']?>">
         </div>
         <div class="">
-            <label for="recipient-name" class="col-form-label">Date of admission:</label>
+            <label for="recipient-name" class="col-form-label">Date:</label>
             <input type="date" class="form-control" id="recipient-name" name="DateOfAdmission" value="<?php echo $table['date']?>">
         </div>
         <div class="modal-footer">

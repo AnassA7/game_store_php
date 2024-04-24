@@ -51,8 +51,11 @@
                     </thead>
                     <tbody>
                         <?php
+
                           include 'config.php';
-                          $result = $con -> query("SELECT * FROM game");
+                          session_start();
+                          $id = $_SESSION['studio'];
+                          $result = $con -> query("SELECT * FROM game WHERE studio_id=$id");
                           foreach($result as $value):
                         ?>
                       <tr class="bg-white align-middle">
