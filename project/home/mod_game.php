@@ -7,7 +7,7 @@ if(isset($_GET['Id']) && is_numeric($_GET['Id'])) {
     $id = $_GET['Id'];
 
     // Prepare the SQL statement
-    $statement = $con->prepare("SELECT * FROM studio WHERE Id = ?");
+    $statement = $con->prepare("SELECT * FROM game WHERE Id = ?");
 
     // Bind the parameter to the placeholder
     $statement->bind_param('i', $id);
@@ -47,16 +47,20 @@ if(isset($_GET['Id']) && is_numeric($_GET['Id'])) {
             <input type="text" class="form-control" id="recipient-name" name="Name" value="<?php echo $table['name']?>">
         </div>
         <div class="">
-            <label for="recipient-name" class="col-form-label">Email:</label>
-            <input type="text" class="form-control" id="recipient-name" name="Email" value="<?php echo $table['email']?>">
+            <label for="recipient-name" class="col-form-label">category:</label>
+            <input type="text" class="form-control" id="recipient-name" name="Email" value="<?php echo $table['category']?>">
+        </div>
+        <div class="">
+            <label for="recipient-name" class="col-form-label">price:</label>
+            <input type="text" class="form-control" id="recipient-name" name="price" value="<?php echo $table['price']?>">
         </div>
         <div class="">
             <label for="recipient-name" class="col-form-label">Phone:</label>
             <input type="text" class="form-control" id="recipient-name" name="Phone" value="<?php echo $table['description']?>">
         </div>
         <div class="">
-            <label for="recipient-name" class="col-form-label">Date of admission:</label>
-            <input type="date" class="form-control" id="recipient-name" name="DateOfAdmission" value="<?php echo $table['date']?>">
+            <label for="recipient-name" class="col-form-label">publish date:</label>
+            <input type="date" class="form-control" id="recipient-name" name="DateOfAdmission" value="<?php echo $table['publish_date']?>">
         </div>
         <div class="modal-footer">
             <button type="submit" name="submit" class="btn btn-primary">Update student</button>
@@ -75,6 +79,7 @@ if (isset($_POST['submit'])){
     $Name = $_POST['Name'];
     $Email = $_POST['Email'];
     $Phone = $_POST['Phone'];
+    $price = $_POST['price'];
     $DateOfAdmission = $_POST['DateOfAdmission'];
 
     // Handle image upload
@@ -82,30 +87,32 @@ if (isset($_POST['submit'])){
         $imgData = file_get_contents($_FILES['img']['tmp_name']);
         $imgType = $_FILES['img']['type'];
         // Prepare update statement with image
-        $requete = $con->prepare("UPDATE studio 
+        $requete = $con->prepare("UPDATE game 
             SET 
             image = ?,
             name = ?,
-            email = ?,
+            category = ?,
             description = ?,
-            date = ?
+            price = ?,
+            publish_date = ?
             WHERE Id = ?");
-        $requete->bind_param("bssssi", $imgData, $Name, $Email, $Phone, $DateOfAdmission, $id);
+        $requete->bind_param("bssssi", $imgData, $Name, $Email, $Phone, $price, $DateOfAdmission, $id);
     } else {
         // Prepare update statement without image
-        $requete = $con->prepare("UPDATE studio 
+        $requete = $con->prepare("UPDATE game 
             SET 
             name = ?,
-            email = ?,
+            category = ?,
             description = ?,
-            date = ?
+            price = ?,
+            publish_date = ?
             WHERE Id = ?");
-        $requete->bind_param("ssssi", $Name, $Email, $Phone, $DateOfAdmission, $id);
+        $requete->bind_param("sssssi", $Name, $Email, $Phone, $price, $DateOfAdmission, $id);
     }
 
     $res = $requete->execute();
     if($res) {
-        header("location:students_list.php");
+        header("location:game_list.php");
     } else {
         echo "Update failed.";
     }

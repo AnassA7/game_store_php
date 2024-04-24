@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
                 <div class="middle">
  
                   <div class="left">
-                    <h4>user buy the game</h4>
+                    <h4>your game</h4>
                     <h1><?php echo $n_game ?></h1>
                   </div>
                 </div>

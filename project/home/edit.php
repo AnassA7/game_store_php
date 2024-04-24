@@ -82,8 +82,8 @@ if(isset($_POST['update_profile'])){
 <div class="update-profile">
 
    <form action="" method="post" enctype="multipart/form-data">
+      <img src="data:image/jpeg;base64,<?php echo base64_encode($res_image); ?>">
       <?php
-         echo '<img src="data:image/jpeg;base64,<?php echo base64_encode($res_image); ?>">';
          if(!empty($message)){
             foreach($message as $msg){
                echo '<div class="message">'.$msg.'</div>';

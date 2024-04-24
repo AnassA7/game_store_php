@@ -1,7 +1,22 @@
 <?php
 session_start();
 include_once "uh.php";
+// Step 2: Execute the query
+$sql_m = "SELECT SUM(money) AS total_money FROM operation WHERE id_user = $id";
+$result_m = $con->query($sql_m);
+
+// Step 3: Fetch the result
+if ($result_m->num_rows > 0) {
+    // Output data of each row
+    $row = $result_m->fetch_assoc();
+    $totalMoney = $row["total_money"];
+} else {
+    echo "No transactions found.";
+}
+
+
 ?>
+
 
 
       <!-- --------------
@@ -33,15 +48,15 @@ include_once "uh.php";
            <!-- end seling -->
               <!-- start expenses -->
               <div class="expenses">
-                <span class="material-symbols-sharp">local_mall</span>
+                <span class="material-symbols-sharp">paid</span>
                 <div class="middle">
  
                   <div class="left">
                     <h4>money</h4>
-                    <h1><?php echo $res_money ?></h1>
+                    <h1>-$<?php echo number_format($totalMoney, 2) ?></h1>
                   </div>
                 </div>
-                <small>Last 24 Hours</small>
+                <small></small>
              </div>
 
             <!-- end seling -->
@@ -76,7 +91,7 @@ include_once "uh.php";
                  <tr>
                    <td><?php echo $res_id_op ?></td>
                    <td><?php echo $res_game ?></td>
-                   <td class="warning"><?php echo $res_money ?></td>
+                   <td class="warning">-<?php echo $res_money ?></td>
                    <td class="primary"><?php echo $res_time ?></td>
                  </tr>
                 </tbody>
@@ -118,23 +133,7 @@ include_once "uh.php";
 
   
 
-   <div class="sales-analytics">
-     <h2>Sales Analytics</h2>
 
-      <div class="item onlion">
-        <div class="icon">
-          <span class="material-symbols-sharp">shopping_cart</span>
-        </div>
-        <div class="right_text">
-          <div class="info">
-            <h4>Onlion Orders</h4>
-            <small class="text-muted">Last seen 2 Hours</small>
-          </div>
-          <h5 class="danger">-17%</h5>
-          <h4>3849</h4>
-        </div>
-      </div>
-</div>
 
 
 

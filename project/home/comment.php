@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="assets/css/comment.css">
 
             <?php
+
             include_once "config.php";
             $id = $_GET['id'];
 
@@ -16,6 +17,9 @@
                     $content = $row['content'];
                     $pubdate = $row['publish_date'];
                     $profile_image = $row['image'];
+					$timestamp = strtotime($pubdate);
+					$date = date("Y-m-d", $timestamp);
+					$time = date("H:i:s", $timestamp);
             ?>
 
 <!-- comments container -->
@@ -41,8 +45,8 @@
 			 		<!-- inc. date and time -->
 			 		<div class="comment_details">
 			 			<ul>
-			 				<li><i class="fa fa-clock-o"></i> 13:94</li>
-			 				<li><i class="fa fa-calendar"></i> 04/01/2015</li>
+			 				<li><i class="fa fa-clock-o"></i> <?php echo $time ?></li>
+			 				<li><i class="fa fa-calendar"></i> <?php echo $date ?></li>
 			 				<li><i class="fa fa-pencil"></i> <span class="user"><?php echo $username ?></span></li>
 			 			</ul>
 			 		</div><!-- inc. share/reply and love --><div class="comment_tools">

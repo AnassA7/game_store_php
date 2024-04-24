@@ -31,7 +31,7 @@ while($result = mysqli_fetch_assoc($query)){
            
       <div class="top">
            <div class="logo">
-             <h2>C <span class="danger">BABAR</span> </h2>
+             <h2> <span class="danger"><?php echo $res_Uname ?></span> </h2>
            </div>
            <div class="close" id="close_btn">
             <span class="material-symbols-sharp">
@@ -54,7 +54,7 @@ while($result = mysqli_fetch_assoc($query)){
            </a>
            <a id="a2" href="users.php" class="active">
               <span class="material-symbols-sharp">person </span>
-              <h4>analytics</h4>
+              <h4>user</h4>
            </a>
            <a href="wallet.php">
               <span class="material-symbols-sharp">Wallet</span>
@@ -63,7 +63,7 @@ while($result = mysqli_fetch_assoc($query)){
            <a href="librery.php">
               <span class="material-symbols-sharp">stadia_controller </span>
               <h4>library</h4>
-              <span class="msg_count">14</span>
+              <!-- <span class="msg_count">14</span> -->
            </a>
            <a href="edit.php">
               <span class="material-symbols-sharp">settings </span>

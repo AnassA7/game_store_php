@@ -21,17 +21,31 @@ while($result = mysqli_fetch_assoc($query)){
     $res_money = $result['money'];
 }
 include_once "adh.php";
+// Step 2: Execute the query
+$sql_m = "SELECT SUM(money) AS total_money FROM user WHERE type_user = 'user'";
+$result_m = $con->query($sql_m);
+
+// Step 3: Fetch the result
+if ($result_m->num_rows > 0) {
+    // Output data of each row
+    $row = $result_m->fetch_assoc();
+    $totalMoney = $row["total_money"];
+} else {
+    echo "No transactions found.";
+}
+// Step 2: Execute the query
+$sql_o = "SELECT SUM(money) AS total_money FROM operation";
+$result_o = $con->query($sql_o);
+
+// Step 3: Fetch the result
+if ($result_o->num_rows > 0) {
+    // Output data of each row
+    $row = $result_o->fetch_assoc();
+    $totalOMoney = $row["total_money"];
+} else {
+    echo "No transactions found.";
+}
 ?>
-
-
-      <!-- --------------
-        end asid
-      -------------------- -->
-
-      <!-- --------------
-        start main part
-      --------------- -->
-
       <main>
            <h1>Dashbord</h1>
 
@@ -44,38 +58,24 @@ include_once "adh.php";
                <div class="middle">
 
                  <div class="left">
-                   <h4>Total Sales</h4>
-                   <h1>$25,024</h1>
+                   <h4>money</h4>
+                   <h1>$<?php echo  number_format($res_money, 2) ?></h1>
                  </div>
-                  <div class="progress">
-                      <svg>
-                         <circle  r="30" cy="35" cx="40"></circle>
-                      </svg>
-                      <div class="number"><p>80%</p></div>
-                  </div>
-
                </div>
-               <small>Last 24 Hours</small>
             </div>
            <!-- end seling -->
               <!-- start expenses -->
               <div class="expenses">
-                <span class="material-symbols-sharp">local_mall</span>
+                <span class="material-symbols-sharp">paid</span>
                 <div class="middle">
  
                   <div class="left">
-                    <h4>Total Sales</h4>
-                    <h1>$25,024</h1>
+                    <h4>money user</h4>
+                    <h1>$<?php echo number_format($totalMoney, 2) ?></h1>
                   </div>
-                   <div class="progress">
-                       <svg>
-                          <circle  r="30" cy="40" cx="40"></circle>
-                       </svg>
-                       <div class="number"><p>80%</p></div>
-                   </div>
+
  
                 </div>
-                <small>Last 24 Hours</small>
              </div>
             <!-- end seling -->
                <!-- start seling -->
@@ -85,17 +85,11 @@ include_once "adh.php";
  
                   <div class="left">
                     <h4>Total Sales</h4>
-                    <h1>$25,024</h1>
+                    <h1>$<?php echo number_format($totalOMoney, 2) ?></h1>
                   </div>
-                   <div class="progress">
-                       <svg>
-                          <circle  r="30" cy="40" cx="40"></circle>
-                       </svg>
-                       <div class="number"><p>80%</p></div>
-                   </div>
+
  
                 </div>
-                <small>Last 24 Hours</small>
              </div>
             <!-- end seling -->
 

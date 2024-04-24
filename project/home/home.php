@@ -26,17 +26,53 @@ while($result = mysqli_fetch_assoc($query)){
 include_once "uh.php";
 ?>
       <main>
+           <h1>Bienvenue <?php echo $res_Uname ?> </h1>
 
+
+        <div class="insights">
+
+           <!-- start seling -->
+            <div class="sales">
+               <span class="material-symbols-sharp">id_card</span>
+               <div class="middle">
+
+                 <div class="left">
+                   <h4>name</h4>
+                   <h1><?php echo $res_Uname ?></h1>
+                 </div>
+
+               </div>
+            </div>
+           <!-- end seling -->
+              <!-- start expenses -->
+              <div class="expenses">
+                <span class="material-symbols-sharp">mail</span>
+                <div class="middle">
+ 
+                  <div class="left">
+                    <h4>Email</h4>
+                    <h1><?php echo $res_Email ?></h1>
+                  </div>
+                </div>
+                <small></small>
+             </div>
+              <div class="expenses">
+                <span class="material-symbols-sharp">calendar_today </span>
+                <div class="middle">
+ 
+                  <div class="left">
+                    <h4>date</h4>
+                    <h1><?php echo $res_Age ?></h1>
+                  </div>
+                </div>
+                <small></small>
+             </div>
+
+            <!-- end seling -->
+
+        </div>
        <!-- end insights -->
       <div class="recent_order">
-         <h2>info</h2>
-         <h2>name: <?php echo $res_Uname ?> </h2><br>
-         <h2>email: <?php echo $res_Email ?> </h2><br>
-         <h2>birth day:  <?php echo $res_Age ?></h2><h1></h1><br>
-         <h2>id user: <?php echo $res_id ?> </h2><br>
-
-
-
       </div>
 
       </main>

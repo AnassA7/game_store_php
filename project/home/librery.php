@@ -31,6 +31,7 @@ include_once "uh.php";
 ?>
 
 <main>
+<h1>ton jeu </h1>
 
            <div class="insights">
 
@@ -38,7 +39,7 @@ include_once "uh.php";
              </div>
              <!-- end insights -->
              <div class="recent_order">
-               <h2>GAMES</h2>
+               <h2></h2>
                <link rel="stylesheet" href="assets/css/lib.css">
       <ul class="cards">
                

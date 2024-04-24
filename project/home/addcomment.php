@@ -1,5 +1,10 @@
 <?php 
-
+$id = $_SESSION['valid'];
+$query = mysqli_query($con,"SELECT*FROM user WHERE id=$id");
+while($result = mysqli_fetch_assoc($query)){
+	
+	$res_user_image = $result['image'];
+}
 
 include_once "config.php";
 if(!isset($_SESSION['valid'])){?>
@@ -17,11 +22,11 @@ if(!isset($_SESSION['valid'])){?>
 
    <!-- current #{user} avatar -->
     <div class="user_avatar">
-        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
+        <img src="data:image/jpeg;base64,<?php echo base64_encode($res_user_image); ?>">
     </div><!-- the input field --><div class="input_comment">
         <input type="text" name="comment" id="comment" autocomplete="off" required >
-        <input type="submit" class="btn" name="submit" value="Send">
     </div>
+    <input type="submit" class="btn" name="submit" value="Send">
 
 </div>    
 </form>
